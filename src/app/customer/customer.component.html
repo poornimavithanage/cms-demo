@@ -1,0 +1,90 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div style="text-align: center">
+  <h1>{{message}}</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <form>
+        <fieldset>
+          <legend class="text-center">Valid information is required to register. <span class="req"><small>
+                                required *</small></span></legend>
+
+          <div class="form-group">
+            <label for="Id"><span class="req">* </span> Code: </label>
+            <input required type="text" [(ngModel)]="customer.id" name="id" id="id"
+                   class="form-control phone" maxlength="28" placeholder="Enter customer code..." />
+          </div>
+
+          <div class="form-group">
+            <label for="Name"><span class="req">* </span> Name: </label>
+            <input class="form-control" type="text" [(ngModel)]="customer.name" name="name" id="name" required
+                   placeholder="Enter Name" />
+            <div id="errFirst"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="Address"><span class="req">* </span> Address: </label>
+            <input class="form-control" type="text" [(ngModel)]="customer.address" name="address" id="address"
+                   placeholder="Enter Address" required />
+            <div id="errLast"></div>
+          </div>
+          <div class="form-group">
+            <label for="Number"><span class="req">* </span> Contact: </label>
+            <input class="form-control" type="text" [(ngModel)]="customer.contact" name="mobileNumber" id="number"
+                   placeholder="Enter Contact Number" required />
+            <div id=""></div>
+          </div>
+          <div class="form-group">
+            <input class="btn btn-success" type="submit" name="submit_reg" value="Register" (click)="registerCustomer()">
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+
+    <!--search customer -->
+
+    <div class="row col-md-6">
+      <div class="container text-right">
+        <div id="custom-search-input" >
+          <div class="input-group col-md-6" style="text-align: center">
+            <input type="text" class="search-query form-control" placeholder="Search Code"  name="code" [(ngModel)]="id"/>
+            <span class="input-group-btn">
+                                         <button class="btn btn-danger" type="button" (click)="findCustomerById()">
+                                             <span class=" glyphicon glyphicon-search"></span>
+                                         </button>
+                                     </span>
+          </div>
+        </div>
+      </div>
+
+      <table class="table table-striped custab">
+
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Contact</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let customer of customers">
+          <td>{{customer.id}}</td>
+          <td>{{customer.name}}</td>
+          <td>{{customer.address}}</td>
+          <td>{{customer.contact}}</td>
+<!--          <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deleteUser(user.id)"><span class="glyphicon glyphicon-remove"></span> Delete</button></td>-->
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+</div>
